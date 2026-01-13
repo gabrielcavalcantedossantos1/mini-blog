@@ -1,58 +1,86 @@
 // css
 import styles from "./NavBar.module.css"
 
+// react
+import { useState } from "react"
+
 // authentication
 import { useAuthentication } from "../hooks/useAuthentication"
 
-//context
-import { useAuthValue} from "../context/AuthContext"
+// context
+import { useAuthValue } from "../context/AuthContext"
 
-// importações
+// react-router
 import { NavLink } from "react-router-dom"
 
 const NavBar = () => {
-    const { user } = useAuthValue()
-    const { logout } = useAuthentication()
+  const { user } = useAuthValue()
+  const { logout } = useAuthentication()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <nav className={styles.navbar}>
-        <NavLink to='/' className={styles.brand}>
-            Mini <span>Blog</span>
-        </NavLink>
-        <ul className={styles.links_list}>
-            <li>
-                <NavLink to='/' className={({isActive}) => (isActive ? styles.active : '')}>Home</NavLink>
-            </li>
-            {!user ? (
-                <>
-                    <li>
-                <NavLink to='/login' className={({isActive}) => (isActive ? styles.active : '')}>Entrar</NavLink>
-            </li>
-            <li>
-                <NavLink to='/registro' className={({isActive}) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
-            </li>
-                </>
-            ):(
-                <>
-                    <li>
-                <NavLink to='/posts/create' className={({isActive}) => (isActive ? styles.active : '')}>Novo Post</NavLink>
-            </li>
-            <li>
-                <NavLink to='/dashboard' className={({isActive}) => (isActive ? styles.active : '')}>Dashboard</NavLink>
-            </li>
-                </>
+      <NavLink to="/" className={styles.brand}>
+        Mini <span>Blog</span>
+      </NavLink>
 
-            )}
-            
+      <button
+        className={styles.menu_btn}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Abrir menu"
+        aria-expanded={menuOpen}
+        >
+            {menuOpen ? "✕" : "☰"}
+        </button>
+
+
+      <ul className={`${styles.links_list} ${menuOpen ? styles.open : ""}`}>
+        <li>
+          <NavLink to="/" className={({ isActive }) => isActive ? styles.active : ""}>
+            Home
+          </NavLink>
+        </li>
+
+        {!user ? (
+          <>
             <li>
-                <NavLink to='/about' className={({isActive}) => (isActive ? styles.active : '')}>Sobre</NavLink>
+              <NavLink to="/login" className={({ isActive }) => isActive ? styles.active : ""}>
+                Entrar
+              </NavLink>
             </li>
-            {user && (
-                <li>
-                    <button onClick={logout}>Sair</button>
-                </li>
-            )}
-        </ul>
+            <li>
+              <NavLink to="/registro" className={({ isActive }) => isActive ? styles.active : ""}>
+                Cadastrar
+              </NavLink>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <NavLink to="/posts/create" className={({ isActive }) => isActive ? styles.active : ""}>
+                Novo Post
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard" className={({ isActive }) => isActive ? styles.active : ""}>
+                Dashboard
+              </NavLink>
+            </li>
+          </>
+        )}
+
+        <li>
+          <NavLink to="/about" className={({ isActive }) => isActive ? styles.active : ""}>
+            Sobre
+          </NavLink>
+        </li>
+
+        {user && (
+          <li>
+            <button onClick={logout}>Sair</button>
+          </li>
+        )}
+      </ul>
     </nav>
   )
 }

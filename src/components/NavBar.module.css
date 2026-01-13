@@ -4,8 +4,10 @@
     justify-content: space-between;
     align-items: center;
     padding: .5em 2em;
+    position: relative;
 }
 
+/* Logo */
 .brand{
     font-size: 1.2em;
 }
@@ -15,6 +17,7 @@
     text-transform: uppercase;
 }
 
+/* Lista de links */
 .links_list{
     display: flex;
     list-style: none;
@@ -28,7 +31,52 @@
     padding: .4em .6em;
 }
 
+/* Link ativo */
 .active{
     background-color: #000;
     color: #fff;
+}
+
+/* Botão hamburguer */
+.menu_btn{
+    display: none;
+    font-size: 1.8em;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* 🔥 RESPONSIVIDADE */
+@media (max-width: 768px){
+
+    .menu_btn{
+        display: block;
+    }
+
+    .links_list{
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: center;
+        padding: 1em 0;
+
+        /* animação */
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all .3s ease;
+    }
+
+    .links_list li{
+        margin: 1em 0;
+    }
+
+    .links_list.open{
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
 }

@@ -2,3 +2,34 @@
     min-height: 60vh;
     margin-bottom: 5rem;
 }
+
+.loading_container {
+  position: fixed;          /* cobre a tela inteira */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;      /* centro vertical */
+  justify-content: center;  /* centro horizontal */
+
+  background-color: rgba(255, 255, 255, 0.6); /* opcional */
+  z-index: 999;
+}
+
+.loading_spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top-color: #1a8918; /* verde do botão */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

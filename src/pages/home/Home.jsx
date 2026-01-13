@@ -40,7 +40,11 @@ const Home = () => {
       </form>
 
       <div className={styles.posts}>
-        {loading && <p>Carregando...</p>}
+        {loading && (
+          <div className="loading_container">
+            <div className="loading_spinner"></div>
+          </div>
+        )}
 
         {posts && posts.map((post) => (
           <PostDetails key={post.id} post={post} />

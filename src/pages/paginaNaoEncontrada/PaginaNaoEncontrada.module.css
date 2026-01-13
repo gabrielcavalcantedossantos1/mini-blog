@@ -1,0 +1,33 @@
+.containerError {
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+.containerError h1 {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+  color: #ff4c4c;
+}
+
+.containerError h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.containerError p {
+  font-size: 1.2rem;
+}
+
+.containerError a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #0077ff;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.containerError a:hover {
+  background-color: #005fcc;
+}

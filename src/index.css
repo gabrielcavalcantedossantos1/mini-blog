@@ -34,10 +34,7 @@ nav button:hover{
 
 /* stilo dos form's */
 
-form{
-    max-width: 40%;
-    margin: 0 auto;
-}
+
 
 label{
     display: flex;

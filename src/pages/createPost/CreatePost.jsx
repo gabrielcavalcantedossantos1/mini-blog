@@ -1,83 +1,59 @@
 // css
-import styles from "./CreatePost.module.css"
+import styles from "./CreatePost.module.css";
 
 // react
-import { useState } from "react"
-
-// react-router-dom
-import { useNavigate } from "react-router-dom"
-
-// context
-import { useAuthValue } from "../../context/AuthContext"
+import { useState } from "react";
 
 // hooks
-import { useInsertDocument } from "../../hooks/useInsertDocument"
+import { useAuthValue } from "../../context/AuthContext";
+import { useInsertDocument } from "../../hooks/useInsertDocument";
+
+// react-router-dom
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
-  const [title, setTitle] = useState("")
-  const [image, setImage] = useState("")
-  const [body, setBody] = useState("")
-  const [tags, setTags] = useState("") // agora é string
-  const [formError, setFormError] = useState("")
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [body, setBody] = useState("");
+  const [tags, setTags] = useState("");
 
-  const { user } = useAuthValue()
-  const navigate = useNavigate()
+  const { user } = useAuthValue();
+  const { insertDocument, response } = useInsertDocument("posts");
+  const navigate = useNavigate();
 
-  const { insertDocument, response } = useInsertDocument("posts")
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setFormError("")
+    const tagsArray = tags
+      .split(",")
+      .map((tag) => tag.trim().toLowerCase());
 
-    // validar URL da imagem
-    try {
-      new URL(image)
-    } catch (error) {
-      setFormError("A imagem precisa ser uma URL válida.")
-      return
-    }
-
-    // criar array de tags
-    const tagsArray = tags.split(',').map(tag => (
-      tag.trim()
-      .toLocaleLowerCase()
-    ))
-
-    //checar todos os valores
-    if(!title || !image || !tagsArray || !body) {
-      setFormError("Por favor, preencha todos os campos!")
-    }
-
-    if(formError) return
-
-    await insertDocument({
+    insertDocument({
       title,
       image,
       body,
       tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
-    })
+    });
 
-    // redirecionar após criar post
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   return (
     <div className={styles.create_post}>
       <h2>Criar post</h2>
-      <p>Escreva sobre o que quiser e compartilhe o seu conhecimento!</p>
+      <p>Escreva sobre o que quiser e compartilhe seu conhecimento!</p>
 
       <form onSubmit={handleSubmit}>
         <label>
           <span>Título:</span>
           <input
             type="text"
-            name="title"
+            placeholder="Pense em um bom título"
             required
-            placeholder="Pense em um bom título..."
-            onChange={(e) => setTitle(e.target.value)}
             value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </label>
 
@@ -85,22 +61,20 @@ const CreatePost = () => {
           <span>URL da imagem:</span>
           <input
             type="text"
-            name="image"
+            placeholder="URL da imagem"
             required
-            placeholder="Insira uma imagem que represente o seu post"
-            onChange={(e) => setImage(e.target.value)}
             value={image}
+            onChange={(e) => setImage(e.target.value)}
           />
         </label>
 
         <label>
           <span>Conteúdo:</span>
           <textarea
-            name="body"
-            required
             placeholder="Insira o conteúdo do post"
-            onChange={(e) => setBody(e.target.value)}
+            required
             value={body}
+            onChange={(e) => setBody(e.target.value)}
           ></textarea>
         </label>
 
@@ -108,34 +82,23 @@ const CreatePost = () => {
           <span>Tags:</span>
           <input
             type="text"
-            name="tags"
+            placeholder="react, javascript, firebase"
             required
-            placeholder="Use vírgula para separar as tags"
-            onChange={(e) => setTags(e.target.value)}
             value={tags}
+            onChange={(e) => setTags(e.target.value)}
           />
         </label>
 
-        {!response.loading && (
-          <button className="btn">Cadastrar</button>
-        )}
-
+        {!response.loading && <button className="btn">Cadastrar</button>}
         {response.loading && (
           <button className="btn" disabled>
             Aguarde...
           </button>
         )}
-
-        {response.error && (
-          <p className="error">{response.error}</p>
-        )}
-
-        {formError && (
-          <p className="error">{formError}</p>
-        )}
+        {response.error && <p className="error">{response.error}</p>}
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default CreatePost
+export default CreatePost;

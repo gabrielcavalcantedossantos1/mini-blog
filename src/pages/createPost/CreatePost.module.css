@@ -1,12 +1,52 @@
-.create_post{
-    text-align: center;
+.create_post {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
 }
 
-.create_post h2{
-    font-size: 2.2em;
+.create_post h2 {
+  margin-bottom: 0.5rem;
 }
 
-.create_post p{
-    color: #aaa;
-    margin-bottom: 2em;
+.create_post p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.create_post form {
+  width: 100%;
+}
+
+.create_post label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+
+.create_post label span {
+  margin-bottom: 0.4rem;
+  font-weight: bold;
+}
+
+.create_post input,
+.create_post textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.create_post textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  .create_post {
+    padding: 0 0.8rem;
+  }
 }

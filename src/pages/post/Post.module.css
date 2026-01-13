@@ -1,29 +1,49 @@
 .post_container {
     text-align: center;
+    padding: 0 20px; /* Adiciona um respiro nas laterais em telas pequenas */
+    max-width: 1200px; /* Limita o crescimento em telas muito grandes */
+    margin: 0 auto;
 }
 
 .post_container h3 {
     margin-bottom: .2em;
 }
 
-.post_container img{
-    width: 600px;
+.post_container img {
+    /* Em vez de 600px fixos, usamos 100% da largura disponível */
+    width: 100%; 
+    max-width: 600px; /* Mas não deixa passar de 600px */
+    height: auto;
+    border-radius: 8px;
 }
 
-.body{
-    margin-left: 200px;
-    margin-right: 200px;
+.body {
+    /* Removemos os 200px fixos que quebram o mobile */
+    margin: 20px auto;
+    line-height: 1.6;
+    max-width: 800px; /* Mantém uma largura de leitura confortável no desktop */
 }
 
 .post_container .tags {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Permite que as tags pulem de linha se não couberem */
+    gap: 10px;
 }
 
-.tags p{
-    margin-right: 1em;
+.tags p {
+    margin: 0; /* O gap do container já resolve o espaçamento */
 }
 
-.tags span{
+.tags span {
     font-weight: bold;
+}
+
+/* Ajustes para Telas Médias/Grandes (Desktop) */
+@media (min-width: 768px) {
+    .body {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 40px;
+    }
 }

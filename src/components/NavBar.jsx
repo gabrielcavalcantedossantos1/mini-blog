@@ -14,13 +14,20 @@ import { useAuthValue } from "../context/AuthContext"
 import { NavLink } from "react-router-dom"
 
 const NavBar = () => {
+  
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const handleClique = () => {
+    setMenuOpen(false)
+  }
+
   const { user } = useAuthValue()
   const { logout } = useAuthentication()
-  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <nav className={styles.navbar}>
-      <NavLink to="/" className={styles.brand}>
+      <NavLink to="/" className={styles.brand} onClick={handleClique}>
+    
         Mini <span>Blog</span>
       </NavLink>
 
@@ -36,7 +43,7 @@ const NavBar = () => {
 
       <ul className={`${styles.links_list} ${menuOpen ? styles.open : ""}`}>
         <li>
-          <NavLink to="/" className={({ isActive }) => isActive ? styles.active : ""}>
+          <NavLink to="/" className={({ isActive }) => isActive ? styles.active : ""} onClick={handleClique}>
             Home
           </NavLink>
         </li>
@@ -44,12 +51,12 @@ const NavBar = () => {
         {!user ? (
           <>
             <li>
-              <NavLink to="/login" className={({ isActive }) => isActive ? styles.active : ""}>
+              <NavLink to="/login" className={({ isActive }) => isActive ? styles.active : ""} onClick={handleClique}>
                 Entrar
               </NavLink>
             </li>
             <li>
-              <NavLink to="/registro" className={({ isActive }) => isActive ? styles.active : ""}>
+              <NavLink to="/registro" className={({ isActive }) => isActive ? styles.active : ""} onClick={handleClique}>
                 Cadastrar
               </NavLink>
             </li>
@@ -57,12 +64,12 @@ const NavBar = () => {
         ) : (
           <>
             <li>
-              <NavLink to="/posts/create" className={({ isActive }) => isActive ? styles.active : ""}>
+              <NavLink to="/posts/create" className={({ isActive }) => isActive ? styles.active : ""} onClick={handleClique}>
                 Novo Post
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard" className={({ isActive }) => isActive ? styles.active : ""}>
+              <NavLink to="/dashboard" className={({ isActive }) => isActive ? styles.active : ""} onClick={handleClique}>
                 Dashboard
               </NavLink>
             </li>
@@ -70,7 +77,7 @@ const NavBar = () => {
         )}
 
         <li>
-          <NavLink to="/about" className={({ isActive }) => isActive ? styles.active : ""}>
+          <NavLink to="/about" className={({ isActive }) => isActive ? styles.active : ""} onClick={handleClique}>
             Sobre
           </NavLink>
         </li>

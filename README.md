@@ -1,16 +1,45 @@
-# React + Vite
+# Mini Blog 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mini Blog é uma aplicação web de blog feita com **React** e **Firebase** onde usuários podem:
+🔹 se cadastrar e fazer login  
+🔹 criar, editar e excluir posts  
+🔹 ver posts de todos os usuários
 
-Currently, two official plugins are available:
+🌍 Deploy online: https://mini-blog-seven-phi.vercel.app/  
+📄 Código: https://github.com/gabrielcavalcantedossantos1/mini-blog
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🛠 Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Esse projeto foi desenvolvido com:
 
-## Expanding the ESLint configuration
+- React  
+- React Router  
+- Firebase Authentication  
+- Firestore  
+- CSS Modules  
+- Vite
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📌 Funcionalidades
+
+✔️ Cadastro e login de usuários  
+✔️ Criação de posts  
+✔️ Edição de posts criados  
+✔️ Exclusão de posts  
+✔️ Validação de formulário  
+✔️ Visualização de posts publicados
+
+---
+
+## 🚀 Screenshot / Demo
+
+![Preview do projeto](link-da-imagem-aqui)
+
+---
+
+## 💻 Como rodar o projeto localmente
+
+1. Clone o repositório  

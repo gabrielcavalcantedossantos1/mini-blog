@@ -14,26 +14,32 @@
 /* Busca */
 .search_form {
   display: flex;
-  gap: .5em;
+  gap: 0.5em;
   max-width: 600px;
   margin: 0 auto 2.5em;
 }
 
 .search_form input {
   flex: 1;
-  padding: .6em;
+  padding: 0.6em;
 }
 
-/* GRID RESPONSIVO */
+/* POSTS — 3 no desktop */
 .posts {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5em;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5em;
+}
+
+/* Mobile — 1 por linha */
+@media (max-width: 768px) {
+  .posts {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Sem posts */
 .noposts {
-  grid-column: 1 / -1;
   text-align: center;
   margin-top: 3em;
 }
